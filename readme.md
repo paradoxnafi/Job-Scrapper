@@ -1,0 +1,40 @@
+## Job listing urls
+1. https://unjobs.org/duty_stations/dil
+2. https://www.linkedin.com/jobs/search/?currentJobId=3908451846&geoId=101101678&location=Timor-Leste&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true&sortBy=R&start=25
+3. www.vagaservisu.com (Up-to-date)
+4. www.vagaservisutimorleste.wordpress.com (Last post was in 2017)
+5. https://vagas.cfp.gov.tl/ (All pdf images)
+6. https://www.facebook.com/groups/383284709293856/
+
+## Create a scrapy project
+    scrapy startproject name
+
+## Create a spider
+    scrapy genspider name url
+
+## scrapy interactive shell
+1. start interactive shell <br>
+    `scrapy shell`
+2. Fetch html content of a website <br>
+    `fetch("https://books.toscrape.com/")` This is stored under variable `response`
+3. Access css elements <br>
+    `response.css('div.product_price')`
+4. Save specific css element in another variable <br>
+    `books = response.css('div.product_price')`
+5. Get text from a `a tag` <br>
+    `book0 = books[0]` <br>
+    `book0.css('h3 a::text').get()`
+6. Traverse through multiple tags and classes <br>
+    `book0.css('.product_price .price_color::text').get()`
+7. Get an attribute <br>
+    `book0.css('h3 a').attrib['href]`
+8. Get nested tags and attributes <br>
+    `response.css('li.next a ::attr(href)').get()`
+
+
+## Run a spider
+Navigate to project root and run <br>
+    `crapy crawl spider_name`
+
+## Run a specific file with output stored in a file
+    `scrapy runspider quotes_spider.py -o quotes.jsonl`
