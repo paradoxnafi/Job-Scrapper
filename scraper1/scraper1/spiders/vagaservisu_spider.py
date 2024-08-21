@@ -3,7 +3,7 @@ import time
 
 
 class VagaservisuSpider(scrapy.Spider):
-    name = "vagaservisu"
+    name = "vagaservisu_spider"
     allowed_domains = ["vagaservisu.com"]
     start_urls = ["https://www.vagaservisu.com/search"]
 
