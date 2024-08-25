@@ -1,3 +1,5 @@
 scraper1/__pycache__/
 scraper1/spiders/__pycache__/
 *.pyc
+.idea
+scraper1/scraper1/data

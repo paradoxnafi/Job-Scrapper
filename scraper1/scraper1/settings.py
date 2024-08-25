@@ -20,6 +20,15 @@ USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/1
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
+# SCRAPEOPS_API_KEY = 'e10d2683-1357-40f4-bda1-7619ae3c3b73'
+
+# SCRAPEOPS_PROXY_ENABLED = True
+
+# DOWNLOADER_MIDDLEWARES = {
+#     'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
+# }
+
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
