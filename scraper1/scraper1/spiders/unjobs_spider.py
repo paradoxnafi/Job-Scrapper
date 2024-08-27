@@ -3,6 +3,15 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from scrapy.selector import Selector
 import time
+from datetime import datetime
+
+
+def format_datetime_utc(datetime_str):
+    # Parse the datetime string with timezone information
+    dt = datetime.strptime(datetime_str, '%Y-%m-%dT%H:%M:%SZ')
+    # Return the date in yyyy-mm-dd format
+    return dt.strftime('%Y-%m-%d')
+
 
 class UnjobsSpider(scrapy.Spider):
     name = "unjobs"
@@ -30,6 +39,7 @@ class UnjobsSpider(scrapy.Spider):
         for job in job_posts:
             title = job.css('.jtitle::text').get()
             post_date = job.css('time::attr(datetime)').get()
+            post_date = format_datetime_utc(post_date) if post_date else post_date
             post_url = job.css('.jtitle::attr(href)').get()
             company_name = job.css('div.job::text').get()
 
