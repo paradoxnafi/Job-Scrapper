@@ -1,6 +1,6 @@
 ## Job listing urls
 1. https://unjobs.org/duty_stations/dil
-2. https://www.linkedin.com/jobs/search/?currentJobId=3908451846&geoId=101101678&location=Timor-Leste&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true&sortBy=R&start=25
+2. https://www.linkedin.com/jobs/search?location=Timor-Leste
 3. www.vagaservisu.com (Up-to-date)
 4. www.vagaservisutimorleste.wordpress.com (Last post was in 2017)
 5. https://vagas.cfp.gov.tl/ (All pdf images)
