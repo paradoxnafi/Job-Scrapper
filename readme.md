@@ -1,10 +1,12 @@
 ## Job listing urls
-1. https://unjobs.org/duty_stations/dil
-2. https://www.linkedin.com/jobs/search?location=Timor-Leste
-3. www.vagaservisu.com (Up-to-date)
-4. www.vagaservisutimorleste.wordpress.com (Last post was in 2017)
-5. https://vagas.cfp.gov.tl/ (All pdf images)
-6. https://www.facebook.com/groups/383284709293856/
+1. https://unjobs.org/duty_stations/dil (done)
+2. https://www.linkedin.com/jobs/search?location=Timor-Leste (done)
+3. www.vagaservisu.com (done)
+4. www.vagaservisutimorleste.wordpress.com (Last post was in 2017, to do)
+5. https://vagas.cfp.gov.tl/ (not suitable, all pdf images)
+6. https://www.facebook.com/groups/383284709293856/ (to do)
+7. https://www.lafaek.tl/category/about-care/vaga-serbisu/ (to do)
+8. https://simuweb.sefope.gov.tl/ (password protected)
 
 ## Create a scrapy project
     scrapy startproject name
