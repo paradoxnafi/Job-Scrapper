@@ -27,7 +27,7 @@ class JobPostingSite(Base):
     name = Column(String(1024), nullable=False)
     url = Column(String(1024), nullable=False)
     created_at = Column(Date, nullable=False, default=lambda: datetime.now(timezone.utc))
-    modified_at = Column(Date, nullable=False, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    updated_at = Column(Date, nullable=False, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
     jobs = relationship('Job', backref='job_posting_site', lazy=True)
 
@@ -35,7 +35,7 @@ class JobPostingSite(Base):
         self.name = name
         self.url = url
         self.created_at = datetime.now(timezone.utc)
-        self.modified_at = datetime.now(timezone.utc)
+        self.updated_at = datetime.now(timezone.utc)
 
 
 # jobs table schema
@@ -52,7 +52,7 @@ class Job(Base):
     post_date = Column(Date)
     closing_date = Column(Date)
     created_at = Column(Date, nullable=False, default=lambda: datetime.now(timezone.utc))
-    modified_at = Column(Date, nullable=False, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    updated_at = Column(Date, nullable=False, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
     def __init__(self, job_posting_site_id, title=None, company_name=None, post_url=None, tag=None, job_id=None, post_date=None, closing_date=None):
         self.job_posting_site_id = job_posting_site_id
@@ -64,4 +64,4 @@ class Job(Base):
         self.post_date = post_date
         self.closing_date = closing_date
         self.created_at = datetime.now(timezone.utc)
-        self.modified_at = datetime.now(timezone.utc)
+        self.updated_at = datetime.now(timezone.utc)
