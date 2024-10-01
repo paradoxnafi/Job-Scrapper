@@ -1,6 +1,6 @@
 import os
 from datetime import datetime, timezone
-from sqlalchemy import create_engine, Column, Integer, String, Date, ForeignKey, MetaData
+from sqlalchemy import create_engine, Column, Integer, String, Boolean, Date, ForeignKey, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 
@@ -9,7 +9,7 @@ user = os.environ.get('FIDA_USER')
 password = os.environ.get('FIDA_PASSWORD')
 host = '127.0.0.1'
 port = '3306'
-database = 'job_scraper_timorleste'
+database = 'simetra'
 
 engine = create_engine(f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}")
 metadata = MetaData()
@@ -29,7 +29,7 @@ class JobPostingSite(Base):
     created_at = Column(Date, nullable=False, default=lambda: datetime.now(timezone.utc))
     updated_at = Column(Date, nullable=False, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
-    jobs = relationship('Job', backref='job_posting_site', lazy=True)
+    # jobs = relationship('Job', backref='job_posting_site', lazy=True)
 
     def __init__(self, name, url):
         self.name = name
@@ -45,6 +45,7 @@ class Job(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     job_posting_site_id = Column(Integer, ForeignKey('job_posting_sites.id'), nullable=False)
     title = Column(String(1024))
+    is_scraped = Column(Boolean, default=False, nullable=False)
     company_name = Column(String(1024))
     post_url = Column(String(1024), unique=True, nullable=False)
     tag = Column(String(1024))
@@ -54,9 +55,10 @@ class Job(Base):
     created_at = Column(Date, nullable=False, default=lambda: datetime.now(timezone.utc))
     updated_at = Column(Date, nullable=False, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
-    def __init__(self, job_posting_site_id, title=None, company_name=None, post_url=None, tag=None, job_id=None, post_date=None, closing_date=None):
+    def __init__(self, job_posting_site_id, title=None, is_scraped=False, company_name=None, post_url=None, tag=None, job_id=None, post_date=None, closing_date=None):
         self.job_posting_site_id = job_posting_site_id
         self.title = title
+        self.is_scraped = is_scraped
         self.company_name = company_name
         self.post_url = post_url
         self.tag = tag
