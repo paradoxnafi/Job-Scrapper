@@ -1,15 +1,18 @@
-import os
+import json
 from datetime import datetime, timezone
 from sqlalchemy import create_engine, Column, Integer, String, Boolean, Date, ForeignKey, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 
+with open('config.json') as f:
+    config = json.load(f)
+
 # Database configuration
-user = os.environ.get('FIDA_USER')
-password = os.environ.get('FIDA_PASSWORD')
-host = '127.0.0.1'
-port = '3306'
-database = 'simetra'
+user = config['SIMETRA_USER']
+password = config['SIMETRA_PASSWORD']
+host = config['HOST']
+port = config['PORT']
+database = config['DATABSE']
 
 engine = create_engine(f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}")
 metadata = MetaData()

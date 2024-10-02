@@ -19,38 +19,6 @@ def get_matching_files(directory, sites):
 
     return matches
 
-# Get all jobs from file data
-# def populate_jobs_table(matches):
-#     for site, file in matches.items():
-#         with open(file, 'r') as f:
-#             for line in f:
-#                 try:
-#                     job_data = json.loads(line)
-#                     job = Job(
-#                         job_posting_site_id=site.id,
-#                         title=job_data.get('title', '') or '',
-#                         is_scraped= 1,
-#                         company_name=job_data.get('company_name', '') or '',
-#                         post_url=job_data.get('post_url', '') or '',
-#                         tag=job_data.get('tag', '') or '',
-#                         job_id=job_data.get('job_id', '') or '',
-#                         post_date=job_data.get('post_date', '') or None,
-#                         closing_date=job_data.get('closing_date', '') or None
-#                     )
-#                     session.add(job)
-#                 except Exception as e:
-#                     print(f"Error processing job data from file {file}: {e}")
-
-#         try:
-#             session.commit()
-#         except exc.IntegrityError as ie:
-#             session.rollback()
-#             print(f"IntegrityError: {ie}. Skipping duplicate entries for site {site.name}.")
-#         except Exception as e:
-#             session.rollback()
-#             print(f"Error committing data for site {site.name}: {e}")
-
-# Only get jobs for 2023 and 2024
 def populate_jobs_table(matches):
     for site, file in matches.items():
         with open(file, 'r') as f:
@@ -58,7 +26,6 @@ def populate_jobs_table(matches):
                 try:
                     job_data = json.loads(line)
                     
-                    # Parse post_date and filter for 2023 and 2024
                     post_date_str = job_data.get('post_date', '')
                     post_date = None
                     if post_date_str:
@@ -68,8 +35,7 @@ def populate_jobs_table(matches):
                             print(f"Invalid post_date format in file {file}: {post_date_str}")
                             continue
 
-                    # Only process jobs with post_date in 2023 or 2024
-                    if post_date and (2023 <= post_date.year <= 2024):
+                    if post_date and post_date.year >= 2023:
                         job = Job(
                             job_posting_site_id=site.id,
                             title=job_data.get('title', '') or '',
@@ -97,7 +63,6 @@ def populate_jobs_table(matches):
 
 def main():
     try:
-        # Get all job posting sites from the database
         job_posting_sites = session.query(JobPostingSite).all()
 
         # Match files with job posting sites
