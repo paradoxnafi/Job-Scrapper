@@ -3,3 +3,4 @@ scraper1/spiders/__pycache__/
 *.pyc
 .idea
 scraper1/scraper1/data
+scraper1/scraper1/scripts/config.json
