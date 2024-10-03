@@ -7,7 +7,7 @@ from database import JobPostingSite, Job, session
 
 
 def get_matching_files(directory, sites):
-    files = glob.glob(os.path.join(directory, '*.jsonl'))
+    files = glob.glob(os.path.join(directory, '*_cleaned.jsonl'))
     matches = {}
 
     for site in sites:
@@ -66,7 +66,7 @@ def main():
         job_posting_sites = session.query(JobPostingSite).all()
 
         # Match files with job posting sites
-        directory = '../data/cleaned/import'
+        directory = 'scraper1/scraper1/data/cleaned/import/'
         matches = get_matching_files(directory, job_posting_sites)
 
         # Populate the jobs table

@@ -21,7 +21,7 @@ def clean_jsonl(input_file, output_file):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python clean_jsonl.py <input_file> <output_file>", file=sys.stderr)
+        print("Usage: python removeSpecialChar.py <input_file> <output_file>", file=sys.stderr)
         sys.exit(1)
 
     input_file = sys.argv[1]
