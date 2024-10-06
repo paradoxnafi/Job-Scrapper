@@ -25,7 +25,7 @@ def populate_jobs_table(matches):
             for line in f:
                 try:
                     job_data = json.loads(line)
-                    
+
                     post_date_str = job_data.get('post_date', '')
                     post_date = None
                     if post_date_str:
@@ -49,17 +49,19 @@ def populate_jobs_table(matches):
                         )
                         session.add(job)
 
+                        # Commit each job individually to handle errors on duplicates
+                        try:
+                            session.commit()
+                        except exc.IntegrityError as ie:
+                            session.rollback()
+                            print(f"IntegrityError: {ie}. Skipping duplicate entry: {job_data.get('post_url', '')}")
+                        except Exception as e:
+                            session.rollback()
+                            print(f"Error committing job for site {site.name}: {e}")
+                            continue
+
                 except Exception as e:
                     print(f"Error processing job data from file {file}: {e}")
-
-        try:
-            session.commit()
-        except exc.IntegrityError as ie:
-            session.rollback()
-            print(f"IntegrityError: {ie}. Skipping duplicate entries for site {site.name}.")
-        except Exception as e:
-            session.rollback()
-            print(f"Error committing data for site {site.name}: {e}")
 
 def main():
     try:
