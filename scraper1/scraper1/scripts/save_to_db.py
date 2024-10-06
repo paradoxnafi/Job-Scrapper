@@ -36,6 +36,13 @@ def populate_jobs_table(matches):
                             continue
 
                     if post_date and post_date.year >= 2023:
+                        # Check if the post_url already exists in the database
+                        existing_job = session.query(Job).filter_by(post_url=job_data.get('post_url', '')).first()
+                        if existing_job:
+                            print(f"Job with post_url {job_data.get('post_url', '')} already exists. Skipping.")
+                            continue
+
+                        # Proceed to create the new job entry if it doesn't exist
                         job = Job(
                             job_posting_site_id=site.id,
                             title=job_data.get('title', '') or '',
