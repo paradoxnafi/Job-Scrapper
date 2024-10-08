@@ -7,3 +7,4 @@ scraper1/scraper1/scripts/config.json
 config.json
 scraper1/scraper1/__pycache__/
 scraper1/scraper1/spiders/__pycache__/
+.idea
