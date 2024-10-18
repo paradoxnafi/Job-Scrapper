@@ -1,11 +1,3 @@
-# Job Scraper - Timor-Leste
-
-This application scrapes job postings from the following job sites:
-1. **Vagaservisu**
-2. **Lafeak**
-3. **UNJobs**
-4. **LinkedIn**
-
 ## How to Run
 
 To run this project, follow the steps below:
@@ -23,6 +15,8 @@ To run this project, follow the steps below:
    - Run all four spiders
    - Perform data cleaning
    - Insert the cleaned data into the database
+
+Note: After installing the dependencies it is recommended to create a cron job to run the spiders automatically
 
 ## Database Configuration
 
@@ -45,3 +39,27 @@ This will log the output of the cron job to `cron-job.log`.
 ## Additional Notes
 - **Logging:** Ensure the log file is being monitored for errors.
 - **ChromeDriver:** The correct version of ChromeDriver should match the version of Chrome installed on your machine. You can download the correct version from ChromeDriver Downloads.
+
+## Proxy Configuration with scrapy-rotating-proxies
+
+To avoid being blocked while scraping, you can use the `scrapy-rotating-proxies` middleware. Follow the steps below to set it up:
+
+1. **Install the Package**  
+   Add `scrapy-rotating-proxies` to your project by running:
+   ```bash
+   pip install scrapy-rotating-proxies
+   ```
+2. **Update Settings**  
+   In ```settings.py``` file, enable the middleware and configure your list of proxies:
+   ```python
+   DOWNLOADER_MIDDLEWARES = {
+    'scrapy_rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 750,
+   }
+   ROTATING_PROXY_LIST = [
+      'http://user:pass@proxy1:port',
+      'http://user:pass@proxy2:port',
+      # Add more proxies as needed
+   ]
+   ```
+   More detailed instruction can be found [here](https://scrapeops.io/python-scrapy-playbook/scrapy-rotating-proxy-guide/)
