@@ -1,3 +1,23 @@
+## This is a web scraping tool made for Timor-Leste to scrape job posting data for statistical analysis.
+
+**Note:** The architecture used here is modular. While this example targets job boards, the spiders can be quickly reconfigured to scrape news articles, blog posts, or academic papers while maintaining the same high data integrity and automated cleaning pipeline.
+
+### 📊 Sample Scraped Data (Timor-Leste Job Portals)
+
+The following table demonstrates the structured data captured by the spiders. The tool normalizes diverse sources into a consistent format suitable for statistical analysis and database entry.
+
+| Source | Job Title | Company / Organization | Posted Date | Link |
+| :--- | :--- | :--- | :--- | :--- |
+| **UNjobs** | Consultant - Digital Communications | UN Women | 2024-10-02 | [View Post](https://unjobs.org/vacancies/1727822418135) |
+| **UNjobs** | Senior Officer - ICT | Abt Associates | 2024-09-28 | [View Post](https://unjobs.org/vacancies/1727459264270) |
+| **LinkedIn** | Front End Developer | GT Ecom | 2024-09-19 | [View Post](https://www.linkedin.com/jobs/view/4029761206) |
+| **LinkedIn** | Graphic and UI/UX Designer | PLS | 2024-09-12 | [View Post](https://www.linkedin.com/jobs/view/4024057801) |
+| **Lafeak** | Finance and Operations Manager | CARE Learning Media | 2024-09-12	 | [View Post](https://www.lafaek.tl/finance-and-operations-manager-lafaek-learning-media-project/) |
+| **Lafeak** | Monitoring & Learning Specialist | CARE Learning Media | 2024-08-19 | [View Post](https://www.lafaek.tl/monitoring-evaluation-and-learning-specialist-2/) |
+| **Vagaservisu** | Social Enterprise Director | CARE in Timor-Leste | 2024-10-06 | [View Post](https://www.vagaservisu.com/2024/10/vaga-servisu-lafaek-social-enterprise.html) |
+| **Vagaservisu** | Junior Field Assistant | TOMAK | 2024-10-02 | [View Post](https://www.vagaservisu.com/2024/10/vaga-servisu-junior-field-assistant.html) |
+   
+
 ## How to Run
 
 To run this project, follow the steps below:
